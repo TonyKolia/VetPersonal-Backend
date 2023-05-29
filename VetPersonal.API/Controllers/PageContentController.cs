@@ -11,12 +11,14 @@ namespace VetPersonal.API.Controllers
         private readonly IPageContentRepository _pageContentRepository;
         private readonly IPagesRepository _pagesRepository;
         private readonly IPageImageRepository _pageImageRepository;
+        private readonly ILogger<PageContentController> _logger;
 
-        public PageContentController(IPageContentRepository pageContentRepository, IPagesRepository pagesRepository, IPageImageRepository pageImageRepository)
+        public PageContentController(IPageContentRepository pageContentRepository, IPagesRepository pagesRepository, IPageImageRepository pageImageRepository, ILogger<PageContentController> logger)
         {
             this._pageContentRepository = pageContentRepository;
             this._pagesRepository = pagesRepository;
             this._pageImageRepository = pageImageRepository;
+            this._logger = logger;
         }
 
         [HttpGet]
@@ -42,6 +44,7 @@ namespace VetPersonal.API.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Exception occurred");
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }

@@ -8,4 +8,3 @@ namespace VetPersonal.API.Controllers
         protected static string GetFileExtension(string fileName) => fileName.Substring(fileName.LastIndexOf('.'), fileName.Length - fileName.LastIndexOf('.')).Remove(0, 1);
     }
 }
-

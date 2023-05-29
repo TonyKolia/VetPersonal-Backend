@@ -15,6 +15,9 @@ builder.Services.AddScoped<IPageImageRepository, PageImageRepository>();
 
 var app = builder.Build();
 
+var loggerFactory = app.Services.GetService<ILoggerFactory>();
+loggerFactory.AddFile(builder.Configuration["Logging:LogFilePath"].ToString());
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
